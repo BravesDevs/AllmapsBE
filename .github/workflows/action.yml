@@ -28,7 +28,7 @@ jobs:
   deploy:
     needs: build
     name: Deploy
-    runs-on: [allmapsbe_ec2_runner]
+    runs-on: [ip-172-31-6-134]
 
     steps:
       - name: Pull Image
