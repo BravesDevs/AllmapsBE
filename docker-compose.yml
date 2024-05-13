@@ -1,0 +1,6 @@
+services:
+  backend: 
+    container_name: backend
+    image: ghcr.io/bravesdevs/allmaps:latest
+    ports:
+      - "3000:3000"

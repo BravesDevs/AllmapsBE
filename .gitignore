@@ -1,0 +1,14 @@
+# node modules
+node_modules/
+
+# packag lock
+package-lock.json
+
+# distribution
+dist/
+
+# vscode settings
+.vscode/
+
+# environment variables
+.env
