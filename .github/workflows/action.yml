@@ -6,8 +6,7 @@ on:
       - main
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: bravesdevs/allmaps:latest
+  IMAGE_NAME: bravesdevs1/allmaps:latest
 
 jobs:
   build:
@@ -20,14 +19,13 @@ jobs:
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{github.actor}}
+          username: ${{secrets.DOCKER_USER}}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and Push
         run: |
-          docker build -t bravesdevs/allmaps .
-          docker push bravesdevs/allmaps:latest
+          docker build -t bravesdevs1/allmaps .
+          docker push bravesdevs1/allmaps:latest
 
   deploy:
     needs: build
@@ -37,9 +35,9 @@ jobs:
     steps:
       - name: Pull Image
         run: |
-          docker pull bravesdevs/allmaps:latest
+          docker pull bravesdevs1/allmaps:latest
       - name: Revising Container
         run: |
           docker stop allmaps
           docker rm allmaps
-          docker run -d -p 3000:3000 --name allmaps bravesdevs/allmaps:latest
+          docker run -d -p 3000:3000 --name allmaps bravesdevs1/allmaps:latest
