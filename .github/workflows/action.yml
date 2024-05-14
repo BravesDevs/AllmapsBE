@@ -46,4 +46,4 @@ jobs:
         run: docker pull bravesdevs1/allmaps:latest
 
       - name: Run Container
-        run: docker run -d -p 3000:3000 --name allmaps allmaps:latest
+        run: docker run -d -p 3000:3000 --name allmaps bravesdevs1/allmaps:latest
