@@ -14,8 +14,6 @@ COPY . .
 
 RUN rm -rf dist
 
-RUN tsc
-
 EXPOSE 3000
 
 CMD ["npm", "start"]
