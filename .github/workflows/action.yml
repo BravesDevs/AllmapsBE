@@ -39,4 +39,4 @@ jobs:
       - name: Revising Container
         run: |
           docker rm -f allmaps
-          docker run -d -p 3000:3000 --name allmaps docker.io/bravesdevs1/allmaps:latest
+          docker run -d -p 3000:3000 --name allmaps allmaps:latest
