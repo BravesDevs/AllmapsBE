@@ -1,14 +1,20 @@
 FROM node:21.6-alpine
 
-COPY package.json /app/package.json
+WORKDIR /app
 
-WORKDIR /src
+COPY package*.json ./
+
+RUN npm install
+
+RUN npm install -g typescript
+
+RUN npm install --save-dev @types/node @types/express
+
+COPY . .
 
 RUN rm -rf dist
 
-RUN cd /app && npm install && npm install typescript -g -q
-
-COPY ./ /src
+RUN tsc
 
 EXPOSE 3000
 
