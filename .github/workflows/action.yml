@@ -35,9 +35,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Pull Image
         run: |
-          docker pull bravesdevs1/allmaps:latest
+          docker pull docker.io/bravesdevs1/allmaps:latest
       - name: Revising Container
         run: |
           docker container stop allmaps
           docker container rm allmaps
-          docker run -d -p 3000:3000 --name allmaps bravesdevs1/allmaps:latest
+          docker run -d -p 3000:3000 --name allmaps docker.io/bravesdevs1/allmaps:latest
