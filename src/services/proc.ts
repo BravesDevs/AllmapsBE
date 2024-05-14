@@ -15,6 +15,7 @@ export const generateResult = async (input: String, level: String) => {
         console.log("Input:", input);
         console.log("Level:", level);
         const prompt = process.env.MODEL_PROMPT + input + ', Level: ' + level;
+        console.log("Prompt:", prompt);
         const result = await model.generateContent(prompt);
         console.log("Generating Response...");
         const response = await result.response;
