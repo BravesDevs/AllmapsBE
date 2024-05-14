@@ -33,10 +33,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Pull Image
-        run: |
-          docker pull docker.io/bravesdevs1/allmaps:latest
-      - name: Revising Container
+      - name: Removing stale allmaps artifacts
         run: |
           docker rm -f allmaps
+      - name: Pull Image
+        run: |
+          docker pull bravesdevs1/allmaps:latest
+      - name: Run container
+        run: |
           docker run -d -p 3000:3000 --name allmaps allmaps:latest
