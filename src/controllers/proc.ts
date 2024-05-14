@@ -15,3 +15,7 @@ export const generateMapController = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+export const testController = async (req, res) => {
+    res.status(200).json({ message: 'Test successful' });
+};

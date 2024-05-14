@@ -1,1 +1,1 @@
-export { generateMapController } from './proc';
+export { generateMapController, testController } from './proc';
