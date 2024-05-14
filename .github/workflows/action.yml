@@ -15,7 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-    
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -34,13 +33,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          
       - name: Pull Image
         run: |
           docker pull bravesdevs1/allmaps:latest
