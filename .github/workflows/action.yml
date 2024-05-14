@@ -38,13 +38,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
-      - name: Removing stale allmaps artifacts
-        run: |
-          docker rm -f allmaps
+
+      - name: Removing allmaps container if exists
+        run: docker rm -f allmaps
+
       - name: Pull Image
-        run: |
-          docker pull bravesdevs1/allmaps:latest
-      - name: Run container
-        run: |
-          docker run -d -p 3000:3000 --name allmaps allmaps:latest
+        run: docker pull bravesdevs1/allmaps:latest
+
+      - name: Run Container
+        run: docker run -d -p 3000:3000 --name allmaps allmaps:latest
