@@ -6,19 +6,31 @@ const {
 import { extractJson } from '../helpers';
 require('dotenv').config();
 
+const generationConfig = {
+    temperature: 0.9,
+    topK: 0,
+    topP: 1,
+    maxOutputTokens: 200000,
+};
+
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro-latest' });
+const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 
 
 export const generateResult = async (input: String, level: String) => {
     try {
         const prompt = process.env.MODEL_PROMPT + input + ', Level: ' + level;
-        const result = await model.generateContent(prompt);
-        let text = result.response.text();
-        return extractJson(text);
+        const result = await model.generateContent(prompt, generationConfig);
+
+        let text = await result.response.text();
+        return await extractJson(text);
+
     } catch (error) {
         if (error.message.includes('SAFETY')) {
             return { error: 'Response blocked due to Safety Reasons.' };
         }
+        else
+            return { error: error.message };
     }
 }
