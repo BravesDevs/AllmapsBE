@@ -21,7 +21,7 @@ const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 export const generateResult = async (input: String, level: String) => {
     try {
         const prompt = process.env.MODEL_PROMPT + input + ', Level: ' + level;
-        const result = await model.generateContent(prompt, generationConfig);
+        const result = await model.generateContent(prompt, process.env.GENERATION_CONFIG, process.env.SAFETY_SETTINGS);
 
         let text = await result.response.text();
         return await extractJson(text);
