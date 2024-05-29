@@ -6,14 +6,6 @@ const {
 import { extractJson } from '../helpers';
 require('dotenv').config();
 
-const generationConfig = {
-    temperature: 0.9,
-    topK: 0,
-    topP: 1,
-    maxOutputTokens: 200000,
-};
-
-
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 
