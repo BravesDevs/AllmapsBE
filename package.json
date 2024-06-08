@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.592.0",
+    "@aws-sdk/credential-provider-ini": "^3.592.0",
     "@google/generative-ai": "^0.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
