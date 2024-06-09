@@ -34,7 +34,6 @@ class AllMaps {
         https.createServer({
             key: key,
             cert: cert,
-            passphrase: 'password'
         }, this.app).listen(this.port, () => {
             console.log(`Server running on port ${this.port}`);
         });
