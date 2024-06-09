@@ -40,17 +40,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Removing allmaps container if exists
-        run: docker rm -f allmaps || true
+        run: docker rm -f allmaps
 
       - name: Pull Image
         run: docker pull bravesdevs1/allmaps:latest
 
       - name: Run Container
-        run: |
-          docker run -d -p 3000:3000 --name allmaps \
-            -e GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
-            -e GEMINI_MODEL=${{ secrets.GEMINI_MODEL }} \
-            -e MODEL_PROMPT=${{ secrets.MODEL_PROMPT }} \
-            -e SAFETY_SETTINGS=${{ secrets.SAFETY_SETTINGS }} \
-            -e GENERATION_CONFIG=${{ secrets.GENERATION_CONFIG }} \
-            bravesdevs1/allmaps:latest
+        run: docker run -d -p 3000:3000 --name allmaps bravesdevs1/allmaps:latest
