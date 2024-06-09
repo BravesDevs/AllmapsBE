@@ -1,7 +1,10 @@
 import { default as express } from 'express';
+const https = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
+import fs from 'fs';
+import path from 'path';
 
 import { procRouter } from './routes';
 class AllMaps {
@@ -17,7 +20,22 @@ class AllMaps {
     }
 
     public run = () => {
-        this.app.listen(this.port, () => {
+        const keyPath = path.join(__dirname, '../cert/key.pem');
+        const certPath = path.join(__dirname, '../cert/cert.pem');
+
+        if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
+            console.error('Key or certificate file not found. Make sure the paths are correct.');
+            process.exit(1);
+        }
+
+        const key = fs.readFileSync(keyPath);
+        const cert = fs.readFileSync(certPath);
+
+        https.createServer({
+            key: key,
+            cert: cert,
+            passphrase: 'password'
+        }, this.app).listen(this.port, () => {
             console.log(`Server running on port ${this.port}`);
         });
     }

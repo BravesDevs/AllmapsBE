@@ -12,3 +12,6 @@ dist/
 
 # environment variables
 .env
+
+# cert
+cert/
