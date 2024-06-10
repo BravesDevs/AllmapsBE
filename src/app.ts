@@ -3,9 +3,8 @@ const https = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-import fs, { access } from 'fs';
+import fs from 'fs';
 import path from 'path';
-
 import { procRouter } from './routes';
 class AllMaps {
     private app: express.Application;
