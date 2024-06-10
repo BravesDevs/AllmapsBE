@@ -3,7 +3,7 @@ const https = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
-import fs from 'fs';
+import fs, { access } from 'fs';
 import path from 'path';
 
 import { procRouter } from './routes';
@@ -13,7 +13,13 @@ class AllMaps {
     constructor() {
         this.app = express();
         this.app.use(bodyParser.json());
-        this.app.use(cors());
+        this.app.use(cors({
+            origin: "*",
+            accessControlAllowOrigin: "*",
+            accessControlAllowHeaders: "*",
+            accessControlAllowMethods: "*",
+            methods: "GET,POST,PUT,DELETE,PATCH"
+        }));
         this.port = Number(process.env.PORT) || 3000;
         this.configureRoutes();
         this.initializeMiddlewares();
@@ -44,10 +50,6 @@ class AllMaps {
     }
 
     private initializeMiddlewares() {
-        this.app.use(cors({
-            origin: "*",
-            methods: "GET,POST,PUT,DELETE,PATCH"
-        }));
 
         this.app.use(express.urlencoded({
             extended: true,
