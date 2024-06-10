@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-
 env:
   IMAGE_NAME: bravesdevs1/allmaps:latest
 
