@@ -56,6 +56,9 @@ class AllMaps {
 
     private configureRoutes = () => {
         this.app.use('/api/proc', procRouter);
+        this.app.use('/', (req, res) => {
+            res.send('Welcome to the AllMaps API');
+        });
     }
 
     private initializeMiddlewares() {

@@ -40,6 +40,9 @@ class AllMaps {
         };
         this.configureRoutes = () => {
             this.app.use('/api/proc', routes_1.procRouter);
+            this.app.use('/', (req, res) => {
+                res.send('Welcome to the AllMaps API');
+            });
         };
         this.app = (0, express_1.default)();
         this.app.use(bodyParser.json());
