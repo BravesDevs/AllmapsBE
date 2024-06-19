@@ -5,10 +5,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "node dist/app.js",
-    "build": "tsc -p src/",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project src/tsconfig.json",
     "clean": "rm -rf ./dist",
-    "start": "npm run build && npm run dev"
+    "start": "npm run build && npm run dev",
+    "add-build": "git add dist",
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
