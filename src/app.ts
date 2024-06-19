@@ -24,9 +24,16 @@ class AllMaps {
         this.initializeMiddlewares();
     }
 
-
-    // Run the server
+    // Run Http Server
     public run = () => {
+        this.app.listen(this.port, () => {
+            console.log(`HTTP server running on port ${this.port}`);
+        });
+    }
+
+
+    // Run Https Server
+    public secureRun = () => {
         let key: any;
         let cert: any;
         getSecret().then((response) => {
@@ -43,7 +50,7 @@ class AllMaps {
             key: key,
             cert: cert,
         }, this.app).listen(this.port, () => {
-            console.log(`Server running on port ${this.port}`);
+            console.log(`HTTPS server running on port ${this.port}`);
         });
     };
 

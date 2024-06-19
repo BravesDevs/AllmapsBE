@@ -12,18 +12,14 @@ const routes_1 = require("./routes");
 const helpers_1 = require("./helpers");
 class AllMaps {
     constructor() {
-        // Run the server
+        // Run Http Server
         this.run = () => {
-            // const keyPath = path.join(__dirname, '../cert/key.pem');
-            // const certPath = path.join(__dirname, '../cert/cert.pem');
-            // if (!fs.existsSync(keyPath) || !fs.existsSync(certPath)) {
-            //     console.error('Key or certificate file not found. Make sure the paths are correct.');
-            //     process.exit(1);
-            // }
-            // const key = fs.readFileSync(keyPath);
-            // console.log(key)
-            // const cert = fs.readFileSync(certPath);
-            // Get the keys and certificates from the secrets manager
+            this.app.listen(this.port, () => {
+                console.log(`HTTP server running on port ${this.port}`);
+            });
+        };
+        // Run Https Server
+        this.secureRun = () => {
             let key;
             let cert;
             (0, helpers_1.getSecret)().then((response) => {
@@ -39,7 +35,7 @@ class AllMaps {
                 key: key,
                 cert: cert,
             }, this.app).listen(this.port, () => {
-                console.log(`Server running on port ${this.port}`);
+                console.log(`HTTPS server running on port ${this.port}`);
             });
         };
         this.configureRoutes = () => {
