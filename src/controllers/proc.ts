@@ -1,6 +1,6 @@
 import { generateResult } from "../services/proc";
-
-export const generateMapController = async (req, res) => {
+import { Request, Response } from "express";
+export const generateMapController = async (req: Request, res: Response) => {
     try {
         const { text, level } = req.body;
         if (!text || !level) {
@@ -15,6 +15,6 @@ export const generateMapController = async (req, res) => {
     }
 };
 
-export const testController = async (req, res) => {
+export const testController = async (req: Request, res: Response) => {
     res.status(200).json({ message: 'Test successful' });
 };

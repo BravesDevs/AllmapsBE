@@ -1,4 +1,5 @@
 import { default as express } from 'express';
+import { Request, Response } from 'express';
 const https = require('https');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -8,7 +9,7 @@ import { getSecret } from './helpers';
 
 class AllMaps {
     private app: express.Application;
-    private port: number;
+    private readonly port: number;
     constructor() {
         this.app = express();
         this.app.use(bodyParser.json());
@@ -45,7 +46,7 @@ class AllMaps {
         });
     }
 
-    private createServer = (key, cert) => {
+    private createServer = (key: any, cert: any) => {
         https.createServer({
             key: key,
             cert: cert,
@@ -56,7 +57,7 @@ class AllMaps {
 
     private configureRoutes = () => {
         this.app.use('/api/proc', procRouter);
-        this.app.use('/', (req, res) => {
+        this.app.use('/', (req: Request, res: Response) => {
             res.send('Welcome to the AllMaps API');
         });
     }

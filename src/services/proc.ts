@@ -1,10 +1,8 @@
 const {
     GoogleGenerativeAI,
-    HarmCategory,
-    HarmBlockThreshold,
 } = require("@google/generative-ai");
 import { extractJson } from '../helpers';
-import { getSecretSync, getSecret } from '../helpers';
+import { getSecret } from '../helpers';
 require('dotenv').config();
 
 
@@ -23,7 +21,7 @@ export const generateResult = async (input: String, level: String) => {
         const prompt = MODEL_PROMPT + input + ', Level: ' + level;
         const result = await model.generateContent(prompt, GENERATION_CONFIG, SAFETY_SETTINGS);
 
-        let text = await result.response.text();
+        let text = result.response.text();
         return await extractJson(text);
 
     } catch (error) {
