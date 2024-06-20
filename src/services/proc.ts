@@ -2,7 +2,7 @@ const {
     GoogleGenerativeAI,
 } = require("@google/generative-ai");
 import { extractJson } from '../helpers';
-import { getSecret } from '../helpers';
+// import { getSecret } from '../helpers';
 require('dotenv').config();
 
 
@@ -14,9 +14,9 @@ const model = genAI.getGenerativeModel({ model: process.env.GEMINI_MODEL });
 export const generateResult = async (input: String, level: String) => {
     try {
 
-        const MODEL_PROMPT = await getSecret().then((response) => response.MODEL_PROMPT) || process.env.MODEL_PROMPT;
-        const GENERATION_CONFIG = await getSecret().then((response) => response.GENERATION_CONFIG) || process.env.GENERATION_CONFIG;
-        const SAFETY_SETTINGS = await getSecret().then((response) => response.SAFETY_SETTINGS) || process.env.SAFETY_SETTINGS;
+        const MODEL_PROMPT = process.env.MODEL_PROMPT;
+        const GENERATION_CONFIG = process.env.GENERATION_CONFIG;
+        const SAFETY_SETTINGS = process.env.SAFETY_SETTINGS;
 
         const prompt = MODEL_PROMPT + input + ', Level: ' + level;
         const result = await model.generateContent(prompt, GENERATION_CONFIG, SAFETY_SETTINGS);
