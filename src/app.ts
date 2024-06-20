@@ -55,6 +55,7 @@ class AllMaps {
     //     });
     // };
 
+
     private configureRoutes = () => {
         this.app.use('/api/proc', procRouter);
     }
