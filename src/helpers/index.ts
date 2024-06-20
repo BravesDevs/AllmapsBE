@@ -1,3 +1,3 @@
 export { extractJson } from './functions';
 
-export { getSecret, getSecretSync } from './secrets';
+// export { getSecret, getSecretSync } from './secrets';

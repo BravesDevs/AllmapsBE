@@ -2,7 +2,6 @@ const {
     GoogleGenerativeAI,
 } = require("@google/generative-ai");
 import { extractJson } from '../helpers';
-// import { getSecret } from '../helpers';
 require('dotenv').config();
 
 

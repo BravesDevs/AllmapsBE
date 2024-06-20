@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 import { procRouter } from './routes';
-import { getSecret } from './helpers';
+// import { getSecret } from './helpers';
 
 class AllMaps {
     private app: express.Application;
@@ -34,32 +34,29 @@ class AllMaps {
 
 
     // Run Https Server
-    public secureRun = () => {
-        let key: any;
-        let cert: any;
-        getSecret().then((response) => {
-            key = response.SSL_KEY;
-            cert = response.SSL_CERT;
-            this.createServer(key, cert)
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
+    // public secureRun = () => {
+    //     let key: any;
+    //     let cert: any;
+    //     getSecret().then((response) => {
+    //         key = response.SSL_KEY;
+    //         cert = response.SSL_CERT;
+    //         this.createServer(key, cert)
+    //     }).catch((error) => {
+    //         console.error(error);
+    //     });
+    // }
 
-    private createServer = (key: any, cert: any) => {
-        https.createServer({
-            key: key,
-            cert: cert,
-        }, this.app).listen(this.port, () => {
-            console.log(`HTTPS server running on port ${this.port}`);
-        });
-    };
+    // private createServer = (key: any, cert: any) => {
+    //     https.createServer({
+    //         key: key,
+    //         cert: cert,
+    //     }, this.app).listen(this.port, () => {
+    //         console.log(`HTTPS server running on port ${this.port}`);
+    //     });
+    // };
 
     private configureRoutes = () => {
         this.app.use('/api/proc', procRouter);
-        this.app.use('/', (req: Request, res: Response) => {
-            res.send('Welcome to the AllMaps API');
-        });
     }
 
     private initializeMiddlewares() {
