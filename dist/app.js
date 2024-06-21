@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 const routes_1 = require("./routes");
-const helpers_1 = require("./helpers");
+// import { getSecret } from './helpers';
 class AllMaps {
     constructor() {
         // Run Http Server
@@ -19,30 +19,27 @@ class AllMaps {
             });
         };
         // Run Https Server
-        this.secureRun = () => {
-            let key;
-            let cert;
-            (0, helpers_1.getSecret)().then((response) => {
-                key = response.SSL_KEY;
-                cert = response.SSL_CERT;
-                this.createServer(key, cert);
-            }).catch((error) => {
-                console.error(error);
-            });
-        };
-        this.createServer = (key, cert) => {
-            https.createServer({
-                key: key,
-                cert: cert,
-            }, this.app).listen(this.port, () => {
-                console.log(`HTTPS server running on port ${this.port}`);
-            });
-        };
+        // public secureRun = () => {
+        //     let key: any;
+        //     let cert: any;
+        //     getSecret().then((response) => {
+        //         key = response.SSL_KEY;
+        //         cert = response.SSL_CERT;
+        //         this.createServer(key, cert)
+        //     }).catch((error) => {
+        //         console.error(error);
+        //     });
+        // }
+        // private createServer = (key: any, cert: any) => {
+        //     https.createServer({
+        //         key: key,
+        //         cert: cert,
+        //     }, this.app).listen(this.port, () => {
+        //         console.log(`HTTPS server running on port ${this.port}`);
+        //     });
+        // };
         this.configureRoutes = () => {
             this.app.use('/api/proc', routes_1.procRouter);
-            this.app.use('/', (req, res) => {
-                res.send('Welcome to the AllMaps API');
-            });
         };
         this.app = (0, express_1.default)();
         this.app.use(bodyParser.json());
